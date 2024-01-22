@@ -1,0 +1,40 @@
+So what we have:
+
+We have 2019 sales data in 12 csv file.
+
+Problem statement:
+
+Using Python Pandas & Python Matplotlib to analyze and answer business questions about 12 months worth of sales data.
+
+Steps taken:
+
+Importing the necessary libraries needed.
+Merging the 12 months sales data into a single file using pandas concat method.
+Read the udated data in updated data frane.
+Cleaning the data.
+Adding a month, sales column in my data frame.
+Answering my first question : What was the best month for sales? How much was earned that month?
+- December month is highest revenue genrating month and January being the least.
+Adding a new city column in my data set
+Anwering second question : Which city has the highest amount of sales?
+- San Francisco stands at highest amount of sales.
+Answering third question :  What time should we display our advertisment so that we can maximize likelihood of customer's buying product?
+For this we first converted our Order Date column into Datetime column and extract hour and minute from it.
+next we group our data by hour and plot a line chart to get the peak period of the day where we have maximum number of sales.
+- 12PM and 7PM stands out to be the peak period where people buy stuffs.
+Answering fourth question : What products are most often sold together?
+first we got all the duplicates order rows from the data frame.
+grouped them by order id and join their products by comma.
+Then we drop the duplicates.
+Next we used the itertools and Collections packages to get the products that are brought simultaneously and get their counts.
+
+-we found iphone and lightning charing cable stands on top with 1005 purchases.
+
+Answering the fifth question: What product sold the most? Why do you think it is sold the most?
+
+For this we converted qunatity ordered column into numeric column.
+then grouped the data by product and calculated total qunatity sold for each product and plot it over the bar chart and line chart.
+-AA and AAA batteries stands to be most ordered product and LG dyer and washinhg machine being the least.
+The thing we obsered from the line of prices confirmed that as AAA and AA batteries were cheap so they are ordered by most number of peoples while LG products having prices resulting in low orders from thos porducts.
+
+
