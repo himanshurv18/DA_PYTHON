@@ -1,0 +1,152 @@
+-- Project Name:
+
+
+-- "Starbucks Beverage Analysis: Unveiling Insights and Trends"
+
+
+-- Agenda 
+
+
+1. Introduction
+
+- Overview:
+"Explore Starbucks beverages, uncovering nutritional insights and consumption trends to understand popular choices, nutritional content, and their alignment with dietary guidelines."
+
+
+- Objective and Goals :
+"The objective shifts to understanding the relative prevalence or representation of different Starbucks beverages within the dataset. By analyzing the frequency distribution of beverages based on their occurrence, we aim to identify the most commonly listed beverages, providing insights into the diversity and representation of Starbucks offerings within this dataset."
+
+
+2. Data Overview:
+
+-- What we have?
+-- A csv file with columns mentioned.
+
+-- Beverage_category
+- Its represents different beverage category offered by starbucks.
+
+-- Beverage
+- This represents the beverages like Brewed Coffee, latte etc.
+
+-- Bevrage_prep
+- This represents the different methods used for beverage preparation.
+
+-- Calories
+- Represent the calories it contains.
+
+--  Total Fat (g)
+- Represent total fat content in grams.
+
+-- Trans Fat (g)
+- Represents Trans fat content in grams.
+
+-- Saturated Fat (g)
+- Represents the Saturated fat content in grams.
+
+-- Sodium (mg)
+- Represent the sodium content in the beverages in mg.
+
+--  Total Carbohydrates (g) 
+- Represent the carbohydrates content in the beverages in gram.
+
+-- Cholesterol (mg)
+-Represent the Cholesterol content in the beverages in mg.
+
+--  Dietary Fibre (g)
+- Represent the Dietary Fibre content in the beverages in gram.
+
+-- Sugars (g)
+- Represent the Sugars amount in the beverages in gram.
+
+--  Protein (g) 
+- Represent the protein amount in the beverages in gram.
+
+-- Vitamin A (% DV) 
+- Represent the Vitamin A Daliy value % of 2000-calorie diet.
+
+-- Vitamin C (% DV)
+- Represent the Vitamin C Daliy value % of 2000-calorie diet.
+
+-- Calcium (% DV) 
+Represent the Calcium Daliy value % of 2000-calorie diet.
+
+-- Iron (% DV) 
+Represent the Iron Daliy value % of 2000-calorie diet.
+
+-- Caffeine (mg)
+Represent the caffeine content in the beverages in mg.
+
+
+3. Analysis Questions:
+
+1. Nutritional Comparison:
+
+Which beverage categories have the highest and lowest average calorie content?
+What is the distribution of total fat, saturated fat, and cholesterol across different beverage categories?
+
+2. Impact of Preparation Methods:
+
+How do different beverage preparation methods affect caffeine content?
+Is there a notable difference in the nutritional content (calories, sugars, etc.) between beverage preparations?
+
+
+3. Vitamins and Minerals:
+
+Which nutrients demonstrate the most notable variations in average percentages across different Starbucks beverage categories?
+
+4. Overall Trends and Correlations:
+
+Is there any correlation between calorie content and other nutritional components like fats, sugars, or protein?
+
+
+4. Steps
+
+-- 1. Data Cleaning
+- a. we have one value in total fat which have 3 2 in value which needs to be corrected with 3.2
+- b. In caffine column we need to handle what we can do for varies value.
+
+
+-- 2. Answering our analysis questions -- EDA
+
+Q1. Which beverage categories have the highest and lowest average calorie content?
+
+-- We found that smoothies have high average calorie content while coffe have the lowest average calorie content.
+
+Q2. What is the distribution of total fat, saturated fat, and cholesterol across different beverage categories?
+
+
+-- Beverage category vs Total Fat -- coffee has 0 fat. Maximum amount of Fat is in Signature Espresso Drinks
+Beverage category vs Saturated Fat -- coffee, iced Beverages, smoothies and Light blend coffee they don't have saturated fats except some outliers. -- Classic Espresso Drinks, Signature esp drinks, Tazo Tea drinks, Frappuccino blended coffee and Frappuccino blended Creme they alomost have same amount of Saturated Fat.
+Beverage category vs Cholesterol -- Signature esp drinks , smoothies and Frappuccino blended coffee have the highest amount of cholesterol. Coffee don't have the Cholesterol at all.
+
+
+Q3. How do different beverage preparation methods affect caffeine content?
+
+-- Doppio (Double SHot) preperation method leads to high caffine and Short NonFat Milk leads to the least.
+
+
+Q4. Is there a notable difference in the nutritional content (calories, sugars, etc.) between beverage preparations?
+
+-- whole milk preparation method have high Calories + sugar content while solo and Doppio will have zero sugar and very low calorie content.
+
+
+Q5. Which nutrients demonstrate the most notable variations in average percentages across different Starbucks beverage categories?
+
+-- smoothies notably high in Vitamin C (65% DV) while Signature Espresso Drinks exhibit elevated levels of Calcium (31.38% DV) and Iron (10.55% DV). Classic Espresso Drinks display moderate Vitamin A (12.72% DV) and Calcium (27.34% DV) levels, indicating variations in nutrient compositions among different Starbucks beverage categories.
+
+
+Q6.Is there any correlation between calorie content and other nutritional components like fats, sugars, or protein?
+-- Here it is evident that sugar and Calories have high correlation while sugar with protein stands at least.
+
+
+
+Finding summary:
+
+
+The analysis of Starbucks beverage categories illuminates a spectrum of nutritional disparities and notable trends. Smoothies emerge as calorically dense, contrasting starkly with coffee, which remains the lowest in calorie content. Variations in fat distribution reveal Signature Espresso Drinks with high total fat, while coffee stands as a fat-free option. Notably, cholesterol is absent in coffee but prominent in Signature Espresso Drinks and smoothies. Preparation methods significantly impact caffeine levels, with Doppio yielding higher caffeine content and Short NonFat Milk resulting in the lowest. Nutritional disparities across preparations highlight the variance in calorie and sugar content, with whole milk methods contributing to higher values and Solo or Doppio methods yielding minimal sugars and calories. Specific nutrient dominance characterizes categories; smoothies excel in Vitamin C, Signature Espresso Drinks boast elevated Calcium and Iron, while Classic Espresso Drinks exhibit moderate levels of Vitamin A and Calcium. Moreover, strong correlations between sugar and calorie content imply a profound relationship, contrasting with the minimal correlation between sugar and protein. 
+
+
+
+
+
+
