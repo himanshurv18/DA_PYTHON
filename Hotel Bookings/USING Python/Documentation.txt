@@ -1,0 +1,182 @@
+Hotel Booking Dataset.
+- File format: Csv format
+
+What we have?
+- We have the follwing columns which represent the following thing.
+
+hotel: Name of the hotel - (Resort Hotel, City Hotel)
+
+is_canceled - whether the booking is canceled or not?
+
+lead_time - "lead time" refers to the duration between the booking date and the actual arrival date of the guest
+here it is mesaured in days.
+
+arrival_date_year - arrival date year
+
+arrival_date_month - arrival date month.
+
+arrival_date_week_number - week number of the year of arrival
+
+arrival_date_day_of_month - arrival date of the coressponding month.
+
+stays_in_weekend_nights - represents the number of weekend nights (Saturday and Sunday) that a guest stayed.
+
+stays_in_week_nights - represents the number of week nights that a guest stayed.
+
+adults - Number of adults
+
+children - Number of Childrens
+
+babies - Number of babies
+
+meal - holds the data for meals which guest tooks.
+
+country - represent the country they came from.
+
+market_segment - From which segment the guest comes from.
+
+distribution_channel - represents channels through which booking is made
+
+is_repeated_guest - is the guest is a repreated guest or not?
+
+previous_cancellations - no of the times the guest has previously cancelled the booking.
+
+previous_bookings_not_canceled - no of the times the guest has previously not cancelled the booking.
+
+reserved_room_type - represent different room type
+
+assigned_room_type - represent room type assigned.
+
+booking_changes - no of times alterations made to the booking details.
+
+deposit_type - type of deposit, if any, that guests are required to make to secure their reservation. It indicates the terms related to payments and deposits for the booking
+
+
+agent - Each unique number in the "agent" column signifies a specific travel agent or agency that might have assisted in arranging the booking on behalf of the guest
+
+
+company - company" column usually represents the identification number or code associated with the company or corporate entity that made the booking
+
+days_in_waiting_list - "days_in_waiting_list" column in a hotel booking dataset indicates the number of days that a booking was on the waiting list before it was confirmed or canceled.
+
+customer_type - represnt the customer type
+
+adr - ADR stands for "Average Daily Rate." In the context of the hotel industry, ADR refers to the average revenue earned for each room occupied per day. It's calculated by dividing the total room revenue by the number of rooms sold (occupied) during a specific period.
+
+required_car_parking_spaces - no of car parking space required.
+
+total_of_special_requests - no of special request made by the guest.
+
+reservation_status - current reservation status
+
+reservation_status_date - date when reservation status was updated.
+
+
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Booking Trends Analysis:
+
+What is the overall cancellation rate?
+How do cancellations vary between Resort and City hotels?
+Are there any patterns in cancellation rates based on the month or week number of arrival?
+
+Guest Behavior Analysis:
+
+What's the average lead time for bookings?
+Do repeated guests tend to cancel less?
+Are there differences in booking patterns (weekend vs. weeknights) based on hotel type?
+
+Room and Reservation Analysis:
+
+How often are room types reserved but not assigned upon arrival?
+Are there particular room types more commonly booked by different customer types or countries?
+
+Financial Insights:
+
+What's the average daily rate (ADR) for different hotel types?
+Are there seasonal trends in ADR or revenue generation?
+
+Special Requests and Services:
+
+How does the number of special requests correlate with the booking's cancellation?
+Do guests with more special requests tend to leave higher ADR?
+
+Parking Spaces and Customer Preferences:
+
+What's the demand for car parking spaces, and does it relate to other booking details or customer types?
+
+
+
+'''''''''''''''''''''''''''''''''''''''
+Steps and Findings.
+
+1. We imported necessary libraries.
+2. We loaded the data and clened it.
+3.Then we moved to booking trend analysis.
+Here we answered some of the  questions:
+
+What is the overall cancellation rate?
+-The overall cancellation rate stands at 37% means out of every 100 bookings 37 bookings get cancelled.
+
+How do cancellations vary between Resort and City hotels?
+-The stats states that out of the cancellations we have more cancellations rates in city as compared to resort.
+
+Are there any patterns in cancellation rates based on the month or week number of arrival?
+--- with the chart it is evident that during the starting weeks of the months the cancellation rate is high but as soon we comes to the end of the month the rate drops.
+
+4. Then we moved to Guest Behaviour analysis.
+What's the average lead time for bookings?
+-The average lead time is 104 days which is close to 3 and half month.
+
+Do repeated guests tend to cancel less?
+-From the bar chart we can see that the repeated tends to have low cancellation rate as compared to the guest visiting first time.
+
+
+Are there differences in booking patterns (weekend vs. weeknights) based on hotel type?
+-From this bar plot it is evident that For Both City and Resort Hotel type we have more mumber of stays in week nights as compared to weekend nights
+
+5. Then we moved on to Room and Reservation Analysis.
+
+How often are room types reserved but not assigned upon arrival?
+-From this count plot chart it is evident that we have 12.5% cases where the assigned room is not same as the reserved room. It is also clear that this issue persist with room categories like (A,D,E).
+
+Are there particular room types more commonly booked by different customer types or countries?
+
+-Transient type customers perefer A type room
+Transient-Party type customers prefer to A type room.
+PRT - Portugal customers have highest prefrence to A type room.
+Maximum of Transient and Transient type customers comes from Portugal.
+
+6. Then we moved on to Financial Insights
+
+What's the average daily rate (ADR) for different hotel types?
+-From this it is evident that the ADR doesnot differ considerably by hotel type but the city has greater adr than Resort.
+City Hotel      105.30
+Resort Hotel     94.95
+
+Are there seasonal trends in ADR or revenue generation?
+-This line chart states that during the first half period of the year Jan - August the revenue keeps on incresaing and then decresing after that. August has the highest number of revenue generated in the year.
+
+
+7. Then we moved to Special Requests and Services.
+
+How does the number of special requests correlate with the booking's cancellation?
+-From the above box plot it is evident that the canceled guest do not have any special request apart from some outliers but the person who did the booking for special request tends to be the guest who vist for sure.
+
+Do guests with more special requests tend to leave higher ADR?
+-yes from the bar chart it is evident that the person with the highest number of special request tends to leave high ADR.
+
+
+8. Then we moved to Parking Spaces and Customer Preferences.
+
+What's the demand for car parking spaces, and does it relate to other booking details or customer types?
+- here we see we don't have any specific car parking requirements. Only parkings we requeries is for Transient or Transient-Party which is manageable.
+
+
+'''''''''''''''''''''''''''''''''''''''''''''''''
+Conculsion
+
+The analysis reveals key patterns: City hotels face higher cancellations, urging focused interventions in early-month periods. Repeated guests exhibit loyalty with fewer cancellations, while both hotel types favor weeknight stays. Discrepancies in room assignments highlight a need for consistency. ADR remains stable but slightly higher in City hotels. Seasonal revenue peaks from January to August, emphasizing the need for strategies in slower periods. Personalized services reduce cancellations and potentially boost ADR, while parking demands primarily align with specific customer types. Implementing targeted interventions to mitigate cancellations, tailor offerings, and manage seasonal revenue can optimize hotel performance and guest satisfaction.
+
+
+

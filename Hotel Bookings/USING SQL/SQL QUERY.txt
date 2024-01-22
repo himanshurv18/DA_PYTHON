@@ -1,0 +1,286 @@
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP (1000) [hotel]
+  FROM [HotelBooking].[dbo].[hotel_bookings$]
+
+  --Booking Trends Analysis:
+--What is the overall cancellation rate?
+
+SELECT 
+    round(AVG(is_canceled)*100,2) AS cancellation_rate
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$];
+
+	--37.04%
+
+--How do cancellations vary between Resort and City hotels?
+
+SELECT 
+	hotel, round(AVG(is_canceled)*100,2) AS cancellation_rate
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$]
+	Group by hotel;
+
+--hotel	cancellation_rate
+--City Hotel	41.73%
+--Resort Hotel	27.76%
+
+--Are there any patterns in cancellation rates based on the month or week number of arrival?
+
+SELECT 
+    arrival_date_month,
+   concat(round(AVG(is_canceled)*100,2),'%') AS cancellation_rate
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$]
+GROUP BY 
+    arrival_date_month
+ORDER BY 
+    CASE arrival_date_month
+        WHEN 'January' THEN 1
+        WHEN 'February' THEN 2
+        WHEN 'March' THEN 3
+        WHEN 'April' THEN 4
+        WHEN 'May' THEN 5
+        WHEN 'June' THEN 6
+        WHEN 'July' THEN 7
+        WHEN 'August' THEN 8
+        WHEN 'September' THEN 9
+        WHEN 'October' THEN 10
+        WHEN 'November' THEN 11
+        WHEN 'December' THEN 12
+    END;
+
+	-- We have highest cancellation rate in June and then decreasing afterwards.
+
+	SELECT 
+    arrival_date_week_number,
+    concat(round(AVG(is_canceled)*100,2),'%') AS cancellation_rate
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$]
+GROUP BY 
+    arrival_date_week_number
+ORDER BY 
+    arrival_date_week_number;
+
+--	Guest Behavior Analysis:
+
+--What's the average lead time for bookings?
+
+SELECT 
+    round(AVG(lead_time),0)
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$];
+
+	--104
+
+--Do repeated guests tend to cancel less?
+
+SELECT 
+    CASE is_repeated_guest
+        WHEN 0 THEN 'Not Repeated Guest'
+        WHEN 1 THEN 'Repeated Guest'
+    END AS guest_type,
+    concat(round(AVG(is_canceled)*100,2),'%') AS cancellation_rate
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$]
+GROUP BY 
+    is_repeated_guest;
+
+
+
+
+
+--Are there differences in booking patterns (weekend vs. weeknights) based on hotel type?
+
+SELECT 
+    hotel,
+    AVG(CAST(stays_in_weekend_nights AS INT)) AS avg_weekend_stays,
+    AVG(CAST(stays_in_week_nights AS INT)) AS avg_weeknight_stays
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$]
+GROUP BY 
+    hotel;
+
+--hotel	avg_weekend_stays	avg_weeknight_stays
+--City Hotel	0	2
+--Resort Hotel	1	3
+
+
+
+--Room and Reservation Analysis:
+
+
+--How often are room types reserved but not assigned upon arrival?
+SELECT 
+    CONCAT(FORMAT((COUNT(CASE WHEN reserved_room_type <> assigned_room_type THEN 1 END) * 100.0 / COUNT(*)), '0.00'), '%') AS percentage_not_assigned
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$];
+
+	--12.49%
+
+
+
+
+
+
+
+--Are there particular room types more commonly booked by different customer types or countries?
+
+WITH TopCountries AS (
+    SELECT 
+   Top 5    country,
+        COUNT(*) AS country_count
+    FROM 
+        [HotelBooking].[dbo].[hotel_bookings$]
+    GROUP BY 
+        country
+    ORDER BY 
+        country_count DESC
+   
+)
+
+SELECT 
+    t.country,
+    h.reserved_room_type,
+    COUNT(*) AS room_type_count
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$] h
+JOIN 
+    TopCountries t ON h.country = t.country
+GROUP BY 
+    t.country,
+    h.reserved_room_type
+ORDER BY 
+    t.country,
+    room_type_count DESC;
+
+	--Financial Insights:
+
+--What's the average daily rate (ADR) for different hotel types?
+
+	SELECT 
+    hotel,
+    round(AVG(adr),2) as Average_adr
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$]
+GROUP BY 
+    hotel
+
+
+
+--Are there seasonal trends in ADR or revenue generation?
+
+--For seasonal trends in Average Daily Rate (ADR):
+
+
+SELECT 
+    arrival_date_month,
+    round(AVG(adr),2) AS average_adr
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$]
+GROUP BY 
+    arrival_date_month
+ORDER BY 
+    CASE arrival_date_month
+        WHEN 'January' THEN 1
+        WHEN 'February' THEN 2
+        WHEN 'March' THEN 3
+        WHEN 'April' THEN 4
+        WHEN 'May' THEN 5
+        WHEN 'June' THEN 6
+        WHEN 'July' THEN 7
+        WHEN 'August' THEN 8
+        WHEN 'September' THEN 9
+        WHEN 'October' THEN 10
+        WHEN 'November' THEN 11
+        WHEN 'December' THEN 12
+    END;
+
+	--For seasonal trends in revenue generation (assuming revenue is calculated as ADR * number of rooms sold):
+
+	SELECT 
+    arrival_date_month,
+    round(SUM(adr * (stays_in_weekend_nights + stays_in_week_nights)),2) AS total_revenue
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$]
+GROUP BY 
+    arrival_date_month
+ORDER BY 
+    CASE arrival_date_month
+        WHEN 'January' THEN 1
+        WHEN 'February' THEN 2
+        WHEN 'March' THEN 3
+        WHEN 'April' THEN 4
+        WHEN 'May' THEN 5
+        WHEN 'June' THEN 6
+        WHEN 'July' THEN 7
+        WHEN 'August' THEN 8
+        WHEN 'September' THEN 9
+        WHEN 'October' THEN 10
+        WHEN 'November' THEN 11
+        WHEN 'December' THEN 12
+    END;
+
+
+
+
+	
+--Special Requests and Services:
+
+-- How does the number of special requests correlate with the booking's cancellation?
+SELECT 
+    total_of_special_requests,
+    concat(round(AVG(is_canceled)*100,2),'%') AS cancellation_rate
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$]
+GROUP BY 
+    total_of_special_requests
+ORDER BY 
+    total_of_special_requests;
+
+--total_of_special_requests	cancellation_rate
+--0	47.72%
+--1	22.02%
+--2	22.1%
+--3	17.86%
+--4	10.59%
+--5	5%
+
+
+-- Do guests with more special requests tend to leave higher ADR?
+SELECT 
+    total_of_special_requests,
+    round(AVG(adr),2) AS average_adr,
+    COUNT(*) AS count_of_bookings
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$]
+GROUP BY 
+    total_of_special_requests
+ORDER BY 
+    total_of_special_requests;
+
+
+--	Parking Spaces and Customer Preferences:
+
+--What's the demand for car parking spaces, and does it relate to other booking details or customer types?
+
+
+SELECT 
+    required_car_parking_spaces,
+    COUNT(*) AS count_of_bookings,
+    round(AVG(adr),2) AS average_adr,
+	CEILING(round(AVG(total_of_special_requests),2))
+	AS average_special_requests,
+    customer_type,
+    market_segment,
+    distribution_channel
+FROM 
+    [HotelBooking].[dbo].[hotel_bookings$]
+GROUP BY 
+    required_car_parking_spaces,
+    customer_type,
+    market_segment,
+    distribution_channel
+ORDER BY 
+    required_car_parking_spaces, 
+    count_of_bookings DESC;
+
