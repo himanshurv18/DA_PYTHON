@@ -1,0 +1,127 @@
+Title - International Student Demographics
+
+Data set - CSV format :
+
+academic.csv
+academic_detail.csv
+field_of_study.csv
+origin.csv
+source_of_fund.csv
+status.csv
+
+
+-- Understanding the data set.
+
+1. academic.csv
+
+year: The year. The format is YYYY/YY.
+students: The number of students.
+us_students: The number of non-international students.
+undergraduate: The number of undergraduate students.
+graduate: The number of graduate students.
+non_degree: The number of non-degree students.
+opt: The number of OPT students. OPT stands for Optional Practical Training.
+
+
+2. academic_detail.csv
+
+year: The year. The format is YYYY/YY.
+academic_type: The academic type. One of ["Undergraduate", "Graduate", "Non-Degree", "OPT"],
+academic_level: The academic level. One of ["Associate's", "Bachelor's", "Master's", 'Doctoral',
+"Professional", "Graduate, Unspecified",
+"Non-Degree, Intensive English", "Non-Degree, Other", "OPT"].
+students: The number of students.
+
+
+3. field_of_study.csv
+
+year: The year. The format is YYYY/YY.
+field_of_study: The field of the study.
+major: The major of the study.
+students: The number of students.
+
+4. origin.csv
+
+year: The year. The format is YYYY/YY.
+origin_region: The region of origin, such as Asia, Europe, and North America.
+origin: The origin, such as Canada, China, and India.
+academic_type: The academic type. One of ["Undergraduate", "Graduate", "Non-Degree", "OPT"].
+students: The number of students.
+
+5. source_of_fund.csv
+
+year: The year. The format is YYYY/YY.
+academic_type: The academic type. One of ["Undergraduate", "Graduate", "Non-Degree", "OPT"].
+source_type: The fund source type. One of ["International", "U.S.", "Other"].
+source_of_fund: The source of fund. One of [ "Personal and Family", "Foreign Government or University", "Foreign Private Sponsor", "International Organization", "Current Employment", "U.S. College or University", "U.S. Government", "U.S. Private Sponsor", "Other Sources"].
+students: The number of students.
+
+
+6. status.csv
+
+year: The year. The format is YYYY/YY.
+female: The number of female students.
+male: The number of male students.
+single: The number of non-married students.
+married: The number of married students.
+full_time: The number of full-time students.
+part_time: The number of part-time students.
+visa_f: The number of students with F Visa.
+visa_j: The number of students with J Visa.
+visa_other: The number of students with other types of Visas.
+
+
+
+Steps followed and analysis report.
+
+- Loaded the csv data set and converted it into pandas dataframe object.
+- summarized every data set by identifying missing values, their %, duplicate values, unique values count and various statistical mesaures like (Min,Max,average,sd,firstvalue etc).
+-Next found answer to some questions:
+
+ Q. How has the overall number of international students changed over the years?
+- For this we saw a linear trajectory in yearly international students enrollements numbers. During covid this number gone done but again it is on upward movement.
+
+Q. Yearly top 10 countries international student distribution.
+
+- Here we created a stacked bar chart to get the top 10 countries year wise distribution.
+
+Q. What is the Yearly Academic Type Popularity?
+
+- For this we plot a line chart and found that undergraduate and graduate have the highest academic propularity.
+
+Q. What are the most popular academic levels among international students?
+
+- For this we used the pie chart to get a view of the distribution of students acoording to their academic levels and found that Bachelor's and Master's are the popular academic levels holding close to 50% popularity.
+
+
+Q. What is the distribution of students across Origin Regions?
+
+- Asia stands to pe on top of the list with EAST ASIA being the top most follwed by South and Central Asia.
+
+Q. What is the distribution of Students based on the source of fund?
+
+- Personal and Family top the list follwed by US college or university.
+
+Q. What is the distribution of visa Type among the students?
+
+- F-Visas with 91.6% and rest J-Visa, Other Visa contributing the remaing 8%.
+
+
+ 
+
+Summary and conclusion:
+
+The analysis of the International Student Demographics dataset revealed several key insights. The overall number of international students has shown a consistent upward trend, with a temporary decline during the COVID period. The top 10 countries contributing to international student enrollment were visualized using a stacked bar chart, highlighting variations over the years.
+
+Academic type popularity indicated that undergraduate and graduate programs are the most preferred among international students. Academic level distribution revealed that Bachelor's and Master's degrees collectively account for nearly 50% of the students.
+
+The distribution across origin regions showed Asia, particularly East Asia, as the primary contributor. Personal and Family funding sources were predominant, with U.S. colleges or universities ranking second. In terms of visas, F-Visas dominated with a staggering 91.6%, emphasizing the need for a comprehensive understanding of visa types in the international student population.
+
+Takeaway: The findings suggest a consistent demand for undergraduate and graduate programs, particularly in Asia. Institutions should focus on personalized and family-based funding solutions, and understanding the prevalence of F-Visas is crucial for effective international student support.
+
+
+
+
+
+
+
